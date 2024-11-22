@@ -15,14 +15,6 @@ define('TOP_BANNER_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('TOP_BANNER_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 function top_banner_enqueue_assets($hook) {
-    // Load Font Awesome on all pages (admin and frontend)
-    wp_enqueue_style(
-        'font-awesome',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
-        array(),
-        '6.5.1'
-    );
-
     // Load Google Fonts
     wp_enqueue_style(
         'top-banner-fonts',
@@ -36,7 +28,7 @@ function top_banner_enqueue_assets($hook) {
         wp_enqueue_style(
             'top-banner-admin',
             TOP_BANNER_PLUGIN_URL . 'assets/css/admin.css',
-            array('font-awesome'), // Make admin CSS depend on Font Awesome
+            array(), // Remove Font Awesome dependency since we handle it separately
             '1.0.0'
         );
         
@@ -214,14 +206,14 @@ function top_banner_settings_page()
                         $current_icon = get_option('top_banner_icon', '');
                         $icons = array(
                             '' => array('name' => 'No Icon', 'class' => ''),
-                            'arrow-right' => array('name' => 'Arrow Right', 'class' => 'fa-solid fa-arrow-right'),
-                            'external-link' => array('name' => 'External Link', 'class' => 'fa-solid fa-arrow-up-right-from-square'),
-                            'chevron-right' => array('name' => 'Chevron Right', 'class' => 'fa-solid fa-chevron-right'),
-                            'star' => array('name' => 'Star', 'class' => 'fa-solid fa-star'),
-                            'user' => array('name' => 'User', 'class' => 'fa-regular fa-user'),
-                            'pencil' => array('name' => 'Pencil', 'class' => 'fa-solid fa-pencil'),
-                            'book-open' => array('name' => 'Book', 'class' => 'fa-solid fa-book-open'),
-                            'paintbrush' => array('name' => 'Paintbrush', 'class' => 'fa-solid fa-paintbrush')
+                            'arrow-right' => array('name' => 'Arrow Right', 'class' => 'fas fa-arrow-right'),
+                            'external-link' => array('name' => 'External Link', 'class' => 'fas fa-external-link-alt'),
+                            'chevron-right' => array('name' => 'Chevron Right', 'class' => 'fas fa-chevron-right'),
+                            'star' => array('name' => 'Star', 'class' => 'fas fa-star'),
+                            'user' => array('name' => 'User', 'class' => 'far fa-user'),
+                            'pencil' => array('name' => 'Pencil', 'class' => 'fas fa-pencil-alt'),
+                            'book-open' => array('name' => 'Book', 'class' => 'fas fa-book-open'),
+                            'paintbrush' => array('name' => 'Paintbrush', 'class' => 'fas fa-paint-brush')
                         );
                         ?>
 
@@ -308,33 +300,29 @@ function display_top_banner()
     $icon_class = '';
     switch ($icon) {
         case 'arrow-right':
-            $icon_class = 'fa-solid fa-arrow-right';
+            $icon_class = 'fas fa-arrow-right';
             break;
         case 'external-link':
-            $icon_class = 'fa-solid fa-arrow-up-right-from-square';
+            $icon_class = 'fas fa-external-link-alt'; // Changed from FA 6 to FA 5 name
             break;
         case 'chevron-right':
-            $icon_class = 'fa-solid fa-chevron-right';
+            $icon_class = 'fas fa-chevron-right';
             break;
         case 'star':
-            $icon_class = 'fa-solid fa-star';
-            break;
-        case 'info-circle':
-            $icon_class = 'fa-solid fa-circle-info';
+            $icon_class = 'fas fa-star';
             break;
         case 'user':
-            $icon_class = 'fa-regular fa-user';
-            break;
-        case 'book-open':
-            $icon_class = 'fa-solid fa-book-open';
+            $icon_class = 'far fa-user';
             break;
         case 'pencil':
-            $icon_class = 'fa-solid fa-pencil';
+            $icon_class = 'fas fa-pencil-alt'; // Changed from FA 6 to FA 5 name
+            break;
+        case 'book-open':
+            $icon_class = 'fas fa-book-open';
             break;
         case 'paintbrush':
-            $icon_class = 'fa-solid fa-paintbrush';
+            $icon_class = 'fas fa-paint-brush'; // Changed from FA 6 to FA 5 name
             break;
-
     }
     ?>
     <style>
