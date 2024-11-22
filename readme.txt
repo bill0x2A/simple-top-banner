@@ -31,3 +31,5 @@ Add a customizable top banner to your WordPress site with:
 * Fix: Fontawesome
 * Fix: Unify font loading across admin and site into one function
 * Docs: Update desciption to include my favourite Spanish phrase
+= 1.2.0 =
+* Fix: Use existing Fontawesome installation
